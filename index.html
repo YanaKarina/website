@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Мой сайт</title>
+</head>
+<body>
+  <!-- Шапка сайта -->
+  <header class="header-container container">
+    <img src="logo.png" alt="Логотип" class="logo">
+    <div class="header-text">Колледж ВВКИФПУ</div>
+    <button class="header-button"onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSfTb687ZcnVb_XPLhfHjSj7_KFaAdHV5i48moFF9fSVXQQ0UA/viewform?usp=sf_link';">Получить консультацию</button>
+    <a href="https://t.me/YanaKarina10" class="social-icon"><img src="telegram-icon.png" alt="Telegram"></a>
+    <a href="https://vk.com/id237385631" class="social-icon"><img src="vk-icon.png" alt="VK"></a>  
+  </header>
+
+  <!-- Панель навигации -->
+  <nav class="nav-container container">
+    <a href="#about" class="nav-link">Обо мне</a>
+    <a href="#skills" class="nav-link">Навыки</a>
+    <a href="#projects" class="nav-link">Мои проекты</a>
+    <a href="#contacts" class="nav-link">Контакты</a>
+  </nav>
+
+  <!-- Главная секция -->
+  <section class="nachalo container">
+    <h1>Добро пожаловать!</h1>
+  </section>
+
+  <!-- Обо мне -->
+  <section id="about" class="section-container container">
+    <h2>Обо мне</h2>
+    <img src="я.jpg" alt="Мое фото" style="width: 200px; height: auto;" class="about-photo">
+    <p>Привет! Меня зовут Яна, и я студентка 4 курса колледжа ВВКИФПУ, где изучаю программирование. 
+
+      Мой главный интерес — это разработка приложений и Telegram-ботов. Увлекаюсь написанием кода на Python.
+
+      Проходила практику в Кванториуме, где делали 3D модель предмета интерьера и распечатывали на принтере. Данная практика является хорошим практическим опытом в дальнейшей профессиональной деятельности.
+      
+      Мои сильные стороны — это ответственность, творческий подход и способность концентрироваться на поставленных задачах. Я всегда стараюсь находить креативные решения и доводить проекты до совершенства.</p>
+  </section>
+
+  <!-- Умения -->
+  <section id="skills" class="section-container container">
+    <h2>Навыки</h2>
+    <div class="skills">
+        <div class="skill-item">
+            <img src="web-development-icon.jpg" alt="Веб разработка">
+            <p>Разработка 3D моделей</p>
+            <p> T-FLEX CAD</p>
+        </div>
+        <div class="skill-item">
+            <img src="telegram-icon.png" alt="Разработка Telegram ботов">
+            <p>Разработка Telegram ботов</p>
+            <p>Python</p>
+        </div>
+        <div class="skill-item">
+            <img src="game-development-icon.png" alt="Разработка игр">
+            <p>Разработка игр</p>
+            <p>Unity, Python, Lazarus</p>
+        </div>
+    </div>
+  </section>
+
+  <!-- Мои проекты -->
+  <section id="projects" class="section-container container">
+    <h2>Мои проекты</h2>
+    <div class="projects">
+      <div class="project-item hover-effect">
+        <a href="https://github.com/YanaKarina/Telephone">
+          <img src="Рисунок2.png" alt="Project 1">
+          <p>Проект 1</p>
+        </a>
+      </div>
+      <div class="project-item hover-effect">
+        <a href="https://github.com/YanaKarina/Coursework">
+          <img src="Рисунок1.png" alt="Project 2">
+          <p>Проект 2</p>
+        </a>
+      </div>
+      <div class="project-item hover-effect">
+        <a href="https://github.com/YanaKarina/Game">
+          <img src="Снимок экрана 2024-12-02 211544.png" alt="Project 3">
+          <p>Проект 3</p>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <div id="reviews" class="section-container container">
+    <h2>Отзывы</h2>
+    <div id="reviews-carousel" class="reviews-carousel">
+        <div id="reviews-container" class="reviews-wrapper">
+            <!-- Отзывы будут добавлены здесь через JavaScript -->
+        </div>
+        <!-- Навигация для карусели -->
+        <button id="prev-btn" class="carousel-btn">←</button>
+        <button id="next-btn" class="carousel-btn">→</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch('https://site-business-card.onrender.com/api/reviews'); // API URL
+        const reviews = await response.json();
+
+        const reviewsContainer = document.getElementById('reviews-container');
+
+        // Генерация отзывов
+        reviews.forEach(review => {
+            const reviewItem = document.createElement('div');
+            reviewItem.classList.add('review-item');
+
+            const img = document.createElement('img');
+            img.src = `data:image/jpeg;base64,${review.photo}`; // Если фото передаётся в Base64
+            img.alt = `Фото ${review.name}`;
+
+            const name = document.createElement('h3');
+            name.textContent = review.name;
+
+            const text = document.createElement('p');
+            text.textContent = review.text;
+
+            reviewItem.appendChild(img);
+            reviewItem.appendChild(name);
+            reviewItem.appendChild(text);
+            reviewsContainer.appendChild(reviewItem);
+        });
+
+        // Логика карусели
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const reviewsWrapper = document.querySelector('.reviews-wrapper');
+
+        let currentIndex = 0;
+        const totalReviews = reviews.length;
+        const itemsPerView = 3; // Сколько отзывов показывать
+        const maxIndex = Math.ceil(totalReviews / itemsPerView) - 1;
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100; // Смещение контейнера
+            reviewsWrapper.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+    } catch (error) {
+        console.error('Ошибка загрузки отзывов:', error);
+    }
+});
+
+</script>
+
+  <!-- Контакты -->
+  <section id="contacts" class="section-container container">
+    <h2>Контакты</h2>
+    <div class="contacts">
+      <div class="contacta-item">
+        <img src="gmail-icon.jpg" alt="Email">
+        <a href="mailto:yana.karina.04@mail.ru" target="_blank">Email: yana.karina.04@mail.ru</a>
+      </div>
+      <div class="contacta-item">
+        <img src="telegram-icon.png" alt="Telegram">
+        <a href="https://t.me/YanaKarina10" target="_blank">Telegram: t.me/YanaKarina10</a>
+      </div>
+      <div class="contacta-item">
+        <img src="vk-icon.png" alt="VK">
+        <a href="https://vk.com/id237385631" target="_blank">VK: vk.com/id237385631</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024. Все права защищены.</p>
+  </footer>
+</body>
+</html>

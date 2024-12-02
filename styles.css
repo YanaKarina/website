@@ -1,0 +1,259 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px; /* Разделение между контактами */
+}
+.contacta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contacta-item img {
+  width: 40px; /* Устанавливаем нормальный размер иконок */
+  height: 40px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Шапка сайта */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border-bottom: 1px solid black;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  width: 50px;
+}
+
+.header-text {
+  font-size: 18px;
+}
+
+.header-button {
+  padding: 10px 20px;
+  background: none;
+  border: 2px solid black;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.header-button:hover {
+  transform: translateY(-5px);
+}
+
+.social-icon img {
+  width: 40px; /* Уменьшаем размер иконок */
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.social-icon:hover img {
+  transform: translateY(-5px); /* Эффект подъема при наведении */
+}
+
+/* Навигация */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  border-bottom: 1px solid black;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+}
+
+.nav-link:hover {
+  color: #007BFF;
+}
+
+/* Секции */
+.section-container {
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+}
+
+.section-container:nth-child(even) {
+  background-color: #eaeaea;
+}
+
+/* Умения */
+.skills {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.skill-item {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-5px);
+}
+
+.skill-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Проекты */
+.projects {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px; /* Увеличиваем отступ между проектами */
+}
+
+.project-item {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-10px); /* Больше эффект подъема */
+}
+
+.project-item img {
+  width: 200px; /* Увеличиваем размер картинок */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.project-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-item p {
+  margin-top: 10px;
+  font-size: 18px; /* Увеличиваем текст */
+}
+
+.project-item a:hover {
+  color: #007BFF;
+}
+
+.nachalo h1 {
+  font-size: 48px;
+}
+
+/* Карусель */
+.reviews-carousel {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%; /* Ограничение по ширине */
+}
+
+.reviews-wrapper {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.review-item {
+  flex: 0 0 33.33%; /* Три отзыва в ряд */
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+}
+
+.review-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.review-item h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.review-item p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* Кнопки карусели */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#prev-btn {
+  left: 10px;
+}
+
+#next-btn {
+  right: 10px;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .header-container, .nav-container {
+    flex-direction: column;
+  }
+
+  .nav-link {
+    margin: 10px 0;
+  }
+
+  .skills, .projects {
+    flex-direction: column;
+  }
+}
